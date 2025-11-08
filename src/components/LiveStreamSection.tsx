@@ -1,227 +1,263 @@
-import { Play, MessageSquare, Send, Calendar } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Youtube, Calendar, Clock } from 'lucide-react';
 import { Button } from './ui/button';
-import { ScrollArea } from './ui/scroll-area';
-import { useState } from 'react';
 
 export function LiveStreamSection() {
-  const [chatMessage, setChatMessage] = useState('');
+  const [selectedDay, setSelectedDay] = useState<number>(1);
+  const [currentDay, setCurrentDay] = useState<number>(1);
 
-  // Mensajes de chat de ejemplo
-  const chatMessages = [
-    { user: 'María López', message: '¡Muy interesante la presentación!', time: '10:45' },
-    { user: 'Carlos Ruiz', message: '¿Habrá sesión de preguntas?', time: '10:46' },
-    { user: 'Ana García', message: 'Excelente ponencia del Dr. Mendoza', time: '10:47' },
-    { user: 'José Pérez', message: 'Conectado desde Lima 👋', time: '10:48' },
-    { user: 'Laura Torres', message: '¿Dónde puedo descargar las slides?', time: '10:49' },
+  // Configuración de los streamings
+  const streams = [
+    {
+      day: 1,
+      date: '19 de Noviembre',
+      fullDate: '2025-11-19',
+      videoId: 'xjdV-ukuwmw',
+      startTime: '12:45',
+    },
+    {
+      day: 2,
+      date: '20 de Noviembre',
+      fullDate: '2025-11-20',
+      videoId: 'DIA_2_VIDEO_ID', // TODO: Reemplazar con el ID real del Día 2
+      startTime: '12:45',
+    },
+    {
+      day: 3,
+      date: '21 de Noviembre',
+      fullDate: '2025-11-21',
+      videoId: 'DIA_3_VIDEO_ID', // TODO: Reemplazar con el ID real del Día 3
+      startTime: '12:45',
+    },
   ];
 
-  const handleSendMessage = () => {
-    if (chatMessage.trim()) {
-      // Aquí iría la lógica para enviar el mensaje
-      setChatMessage('');
-    }
+  // Detección automática del día actual basado en la fecha/hora de Perú (GMT-5)
+  useEffect(() => {
+    const detectCurrentDay = () => {
+      // Obtener fecha/hora actual en Perú (GMT-5)
+      const now = new Date();
+      const peruTime = new Date(now.toLocaleString('en-US', { timeZone: 'America/Lima' }));
+      
+      const currentDate = peruTime.toISOString().split('T')[0];
+      const currentHour = peruTime.getHours();
+      const currentMinute = peruTime.getMinutes();
+      const currentTimeInMinutes = currentHour * 60 + currentMinute;
+      const streamStartInMinutes = 12 * 60 + 45; // 12:45 PM
+
+      // Determinar qué día mostrar
+      for (let i = 0; i < streams.length; i++) {
+        const stream = streams[i];
+        
+        // Si es el día del streaming
+        if (currentDate === stream.fullDate) {
+          setCurrentDay(stream.day);
+          setSelectedDay(stream.day);
+          return;
+        }
+        
+        // Si es después del día del streaming pero antes del siguiente
+        if (currentDate > stream.fullDate) {
+          // Si hay un siguiente día y aún no ha llegado
+          if (i < streams.length - 1 && currentDate < streams[i + 1].fullDate) {
+            // Si ya pasó la hora de inicio, mostrar grabación
+            setCurrentDay(stream.day);
+            setSelectedDay(stream.day);
+            return;
+          }
+          // Si es el último día y ya pasó
+          if (i === streams.length - 1) {
+            setCurrentDay(stream.day);
+            setSelectedDay(stream.day);
+            return;
+          }
+        }
+      }
+
+      // Si aún no empieza el evento, mostrar día 1
+      if (currentDate < streams[0].fullDate) {
+        setCurrentDay(1);
+        setSelectedDay(1);
+      }
+    };
+
+    detectCurrentDay();
+    // Actualizar cada minuto
+    const interval = setInterval(detectCurrentDay, 60000);
+    
+    return () => clearInterval(interval);
+  }, []);
+
+  const selectedStream = streams.find(s => s.day === selectedDay) || streams[0];
+
+  // Verificar si estamos en móvil
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const handleWatchOnYouTube = () => {
+    window.open(`https://www.youtube.com/watch?v=${selectedStream.videoId}`, '_blank');
   };
 
   return (
-    <section id="transmision" className="py-20 bg-gradient-to-b from-gray-50 to-white">
+    <section id="streaming" className="py-20 bg-gradient-to-b from-gray-50 to-white">
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#FC2003]/10 to-[#5100D3]/10 px-4 py-2 rounded-full mb-4">
-              <div className="w-2 h-2 bg-[#FC2003] rounded-full animate-pulse"></div>
               <span className="text-sm font-semibold bg-clip-text text-transparent bg-gradient-to-r from-[#FC2003] to-[#5100D3]">
                 Transmisión en Vivo
               </span>
             </div>
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Únete a la
+              Sigue el evento
               <span className="block bg-clip-text text-transparent bg-gradient-to-r from-[#FC2003] to-[#5100D3]">
-                Transmisión en Vivo
+                en tiempo real
               </span>
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-              Sigue todas las conferencias en tiempo real a través de nuestro canal oficial de YouTube
+              Transmisión en vivo vía YouTube con chat interactivo
             </p>
           </div>
 
-          {/* Live Badge */}
-          <div className="flex justify-center mb-6">
-            <div className="inline-flex items-center gap-3 bg-red-50 border-2 border-red-200 px-6 py-3 rounded-full shadow-md">
-              <div className="relative">
-                <div className="w-3 h-3 bg-red-600 rounded-full"></div>
-                <div className="absolute inset-0 w-3 h-3 bg-red-600 rounded-full animate-ping"></div>
-              </div>
-              <span className="font-bold text-red-600">
-                EN VIVO - 19 de Noviembre a las 10:00 AM
-              </span>
-            </div>
+          {/* Day Selector */}
+          <div className="flex justify-center gap-3 mb-8 flex-wrap">
+            {streams.map((stream) => (
+              <button
+                key={stream.day}
+                onClick={() => setSelectedDay(stream.day)}
+                className={`px-6 py-3 rounded-xl font-semibold transition-all ${
+                  selectedDay === stream.day
+                    ? 'bg-gradient-to-r from-[#FC2003] to-[#5100D3] text-white shadow-lg scale-105'
+                    : 'bg-white text-gray-700 border-2 border-gray-200 hover:border-[#5100D3]/30'
+                }`}
+              >
+                <div className="flex items-center gap-2">
+                  <Calendar className="w-4 h-4" />
+                  <div className="text-left">
+                    <div className="text-sm font-bold">Día {stream.day}</div>
+                    <div className="text-xs opacity-90">{stream.date}</div>
+                  </div>
+                  {currentDay === stream.day && (
+                    <span className="ml-2 w-2 h-2 bg-white rounded-full animate-pulse"></span>
+                  )}
+                </div>
+              </button>
+            ))}
           </div>
 
-          {/* Video and Chat Container */}
-          <div className="grid lg:grid-cols-3 gap-6">
-            {/* Video Player */}
-            <div className="lg:col-span-2">
-              <div className="bg-gray-900 rounded-2xl overflow-hidden shadow-2xl">
-                <div className="aspect-video flex items-center justify-center bg-gradient-to-br from-gray-800 via-gray-900 to-black relative">
-                  {/* Video Placeholder */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center space-y-6 px-6">
-                      <div className="w-24 h-24 bg-gradient-to-br from-[#FC2003] to-[#5100D3] rounded-full flex items-center justify-center mx-auto shadow-2xl">
-                        <Play className="w-12 h-12 text-white ml-1" />
-                      </div>
-                      <div>
-                        <h3 className="text-2xl font-bold text-white mb-2">
-                          Transmisión próximamente
-                        </h3>
-                        <p className="text-gray-300 text-lg">
-                          La transmisión comenzará el 19 de noviembre
-                        </p>
-                        <p className="text-gray-400 mt-2">
-                          10:00 AM (GMT-5)
-                        </p>
-                      </div>
-                      <Button
-                        size="lg"
-                        className="bg-gradient-to-r from-[#FC2003] to-[#5100D3] hover:opacity-90"
-                      >
-                        <Calendar className="w-5 h-5 mr-2" />
-                        Recordatorio en Google Calendar
-                      </Button>
-                    </div>
-                  </div>
-                  
-                  {/* YouTube Embed (comentado para activar cuando esté disponible) */}
-                  {/* 
-                  <iframe
-                    className="w-full h-full"
-                    src="https://www.youtube.com/embed/VIDEO_ID"
-                    title="Semana de Innovación UNSA 2025"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
-                  */}
-                </div>
-                
-                {/* Video Controls Info */}
-                <div className="bg-gray-800 p-4">
-                  <div className="flex items-center justify-between text-white">
-                    <div>
-                      <h4 className="font-bold">Semana de Innovación UNSA 2025</h4>
-                      <p className="text-sm text-gray-400">Universidad Nacional de San Agustín</p>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="flex items-center gap-1 bg-gray-700 px-3 py-1 rounded-full">
-                        <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-                        <span className="text-sm">0 espectadores</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+          {/* Stream Info */}
+          <div className="bg-white rounded-xl p-4 mb-6 border-2 border-gray-100 max-w-3xl mx-auto">
+            <div className="flex items-center justify-center gap-6 flex-wrap">
+              <div className="flex items-center gap-2 text-gray-700">
+                <Calendar className="w-5 h-5 text-[#5100D3]" />
+                <span className="font-semibold">{selectedStream.date}</span>
               </div>
-            </div>
-
-            {/* Live Chat */}
-            <div className="lg:col-span-1">
-              <div className="bg-white rounded-2xl shadow-xl border-2 border-gray-100 h-full flex flex-col" style={{ height: '600px' }}>
-                {/* Chat Header */}
-                <div className="bg-gradient-to-r from-[#FC2003] to-[#5100D3] p-4 rounded-t-2xl">
-                  <div className="flex items-center gap-2 text-white">
-                    <MessageSquare className="w-5 h-5" />
-                    <h4 className="font-bold">Chat en Vivo</h4>
-                  </div>
-                </div>
-
-                {/* Chat Messages */}
-                <ScrollArea className="flex-1 p-4">
-                  <div className="space-y-4">
-                    {chatMessages.map((msg, index) => (
-                      <div key={index} className="space-y-1">
-                        <div className="flex items-center gap-2">
-                          <div className="w-8 h-8 bg-gradient-to-br from-[#FC2003] to-[#5100D3] rounded-full flex items-center justify-center text-white text-xs font-bold">
-                            {msg.user.charAt(0)}
-                          </div>
-                          <div className="flex-1">
-                            <div className="flex items-center gap-2">
-                              <span className="font-semibold text-sm text-gray-800">
-                                {msg.user}
-                              </span>
-                              <span className="text-xs text-gray-400">
-                                {msg.time}
-                              </span>
-                            </div>
-                            <p className="text-sm text-gray-600">{msg.message}</p>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </ScrollArea>
-
-                {/* Chat Input */}
-                <div className="p-4 border-t">
-                  <div className="flex gap-2">
-                    <Button
-                      onClick={handleSendMessage}
-                      size="icon"
-                      className="bg-gradient-to-r from-[#FC2003] to-[#5100D3]"
-                    >
-                      <Send className="w-4 h-4" />
-                    </Button>
-                  </div>
-                  <p className="text-xs text-gray-500 mt-2">
-                    El chat estará disponible durante la transmisión
-                  </p>
-                </div>
+              <div className="flex items-center gap-2 text-gray-700">
+                <Clock className="w-5 h-5 text-[#FC2003]" />
+                <span className="font-semibold">{selectedStream.startTime} Hora Perú</span>
               </div>
             </div>
           </div>
 
-          {/* Info Cards */}
-          <div className="grid md:grid-cols-3 gap-6 mt-12">
-            <div className="bg-white rounded-xl p-6 text-center shadow-md border border-gray-100">
-              <div className="w-14 h-14 bg-gradient-to-br from-[#FC2003] to-[#5100D3] rounded-full flex items-center justify-center mx-auto mb-4">
-                <Calendar className="w-7 h-7 text-white" />
+          {/* Mobile View - YouTube Button */}
+          {isMobile ? (
+            <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 text-center">
+              <div className="mb-6">
+                <Youtube className="w-20 h-20 text-red-600 mx-auto mb-4" />
+                <h3 className="text-2xl font-bold text-white mb-2">
+                  Ver en YouTube
+                </h3>
+                <p className="text-gray-300">
+                  Para una mejor experiencia en dispositivos móviles, mira el streaming directamente en YouTube
+                </p>
               </div>
-              <h4 className="font-bold text-gray-800 mb-2">Fechas del Evento</h4>
-              <p className="text-gray-600">19, 20 y 21 de Noviembre 2025</p>
+              <Button
+                onClick={handleWatchOnYouTube}
+                size="lg"
+                className="bg-red-600 hover:bg-red-700 text-white font-bold"
+              >
+                <Youtube className="w-5 h-5 mr-2" />
+                Abrir en YouTube
+              </Button>
             </div>
+          ) : (
+            /* Desktop View - Video + Chat */
+            <div className="bg-white rounded-2xl overflow-hidden shadow-2xl border-2 border-gray-100">
+              <div className="flex flex-col lg:flex-row">
+                {/* Video Container - 65% */}
+                <div className="lg:w-[65%] bg-black">
+                  <div className="relative" style={{ paddingBottom: '56.25%' }}>
+                    <iframe
+                      src={`https://www.youtube.com/embed/${selectedStream.videoId}?autoplay=0&controls=1&modestbranding=1&rel=0`}
+                      title={`Streaming Día ${selectedStream.day}`}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="absolute top-0 left-0 w-full h-full"
+                    ></iframe>
+                  </div>
+                </div>
 
-            <div className="bg-white rounded-xl p-6 text-center shadow-md border border-gray-100">
-              <div className="w-14 h-14 bg-gradient-to-br from-[#FC2003] to-[#5100D3] rounded-full flex items-center justify-center mx-auto mb-4">
-                <Play className="w-7 h-7 text-white" />
+                {/* Chat Container - 35% */}
+                <div className="lg:w-[35%] bg-gray-50 border-l-2 border-gray-200">
+                  <div className="relative h-full min-h-[500px] lg:min-h-[600px]">
+                    <iframe
+                      src={`https://www.youtube.com/live_chat?v=${selectedStream.videoId}&embed_domain=ditt.unsa.edu.pe`}
+                      title="Chat en vivo"
+                      className="absolute top-0 left-0 w-full h-full"
+                    ></iframe>
+                  </div>
+                </div>
               </div>
-              <h4 className="font-bold text-gray-800 mb-2">Horario</h4>
-              <p className="text-gray-600">10:00 AM - 8:00 PM (GMT-5)</p>
-            </div>
 
-            <div className="bg-white rounded-xl p-6 text-center shadow-md border border-gray-100">
-              <div className="w-14 h-14 bg-gradient-to-br from-[#FC2003] to-[#5100D3] rounded-full flex items-center justify-center mx-auto mb-4">
-                <MessageSquare className="w-7 h-7 text-white" />
+              {/* Footer with YouTube Link */}
+              <div className="bg-gradient-to-r from-gray-50 to-gray-100 px-6 py-4 flex items-center justify-between flex-wrap gap-4">
+                <div className="flex items-center gap-3">
+                  <div className="bg-red-600 p-2 rounded-lg">
+                    <Youtube className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-gray-900">
+                      Semana de Innovación UNSA 2025
+                    </p>
+                    <p className="text-xs text-gray-600">
+                      Streaming en vivo vía YouTube
+                    </p>
+                  </div>
+                </div>
+                <Button
+                  onClick={handleWatchOnYouTube}
+                  variant="outline"
+                  size="sm"
+                  className="border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white"
+                >
+                  <Youtube className="w-4 h-4 mr-2" />
+                  Ver en YouTube
+                </Button>
               </div>
-              <h4 className="font-bold text-gray-800 mb-2">Interacción</h4>
-              <p className="text-gray-600">Chat en vivo y sesión de preguntas</p>
             </div>
-          </div>
+          )}
 
-          {/* CTA */}
-          <div className="mt-12 text-center bg-gradient-to-r from-[#FC2003]/10 to-[#5100D3]/10 rounded-2xl p-8">
-            <h3 className="text-2xl font-bold text-gray-800 mb-3">
-              ¿Aún no te has registrado?
-            </h3>
-            <p className="text-gray-600 mb-6">
-              Regístrate ahora para recibir el enlace directo de la transmisión en tu correo
+          {/* Additional Info */}
+          <div className="mt-8 text-center">
+            <p className="text-gray-600 text-sm">
+              ¿Problemas con la transmisión?{' '}
+              <button
+                onClick={handleWatchOnYouTube}
+                className="text-[#5100D3] font-semibold hover:underline"
+              >
+                Ver directamente en YouTube
+              </button>
             </p>
-            <Button
-              size="lg"
-              className="bg-gradient-to-r from-[#FC2003] to-[#5100D3] hover:opacity-90"
-              onClick={() => {
-                const element = document.querySelector('#registro');
-                element?.scrollIntoView({ behavior: 'smooth' });
-              }}
-            >
-              Registrarme Gratis
-            </Button>
           </div>
         </div>
       </div>

@@ -35,13 +35,13 @@ export function Header({ scrolled }: HeaderProps) {
       }`}
     >
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center gap-3">
             <ImageWithFallback
               src="https://images.unsplash.com/photo-1621008945448-513cef3a463d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx1bml2ZXJzaXR5JTIwbG9nbyUyMGhvcml6b250YWx8ZW58MXx8fHwxNzYyNDQ0ODc3fDA&ixlib=rb-4.1.0&q=80&w=1080"
               alt="UNSA Logo"
-              className="h-12 w-auto object-contain"
+              className="h-10 w-auto object-contain"
             />
             <div className="hidden lg:block border-l pl-3 ml-3 border-gray-300">
               <div className="text-sm font-semibold text-[#FC2003]">Semana de Innovación</div>

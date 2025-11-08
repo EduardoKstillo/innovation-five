@@ -11,7 +11,8 @@ export function HeroSection() {
   };
 
   return (
-    <section id="inicio" className="pt-24 pb-8 px-4 md:px-6 lg:px-8 bg-white">
+    <section id="inicio" className="pt-20 pb-8 px-4 md:px-6 lg:px-8 bg-white">
+      <div className="container mx-auto max-w-[1400px]">
         {/* Main Gradient Rectangle */}
         <div className="relative bg-gradient-to-br from-[#FC2003] via-[#8B0156] to-[#5100D3] rounded-3xl md:rounded-[32px] lg:rounded-[40px] overflow-hidden shadow-2xl">
           {/* Subtle Background Overlay */}
@@ -24,25 +25,6 @@ export function HeroSection() {
           {/* Content Container */}
           <div className="relative z-10 px-6 md:px-12 lg:px-16 py-16 md:py-20 lg:py-24">
             <div className="max-w-4xl mx-auto text-center space-y-10">
-              {/* Small Icon */}
-              <div className="flex justify-center">
-                <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/30">
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"
-                      fill="white"
-                      fillOpacity="0.9"
-                    />
-                  </svg>
-                </div>
-              </div>
-
               {/* Main Title - SVG */}
               <div>
                 <svg
@@ -145,6 +127,7 @@ export function HeroSection() {
             </div>
           </div>
         </div>
+      </div>
     </section>
   );
 }

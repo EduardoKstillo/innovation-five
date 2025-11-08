@@ -1,5 +1,5 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
-import { Clock, MapPin, User, Download } from 'lucide-react';
+import { Clock, Download, User, Building2 } from 'lucide-react';
 import { Button } from './ui/button';
 
 export function ProgramSection() {
@@ -11,26 +11,29 @@ export function ProgramSection() {
         {
           time: '10:00 - 11:30',
           title: 'Innovación y Transferencia Tecnológica: Experiencias desde Europa',
-          speaker: 'Dr. Carlos Mendoza',
-          country: 'España',
-          institution: 'Universidad Politécnica de Madrid',
+          speaker: 'MSc. Silvia P. Mora - Castro',
+          country: 'México',
+          institution: 'Tecnológico de Monterrey',
           description: 'Casos de éxito en transferencia tecnológica desde universidades europeas al mercado global.',
+          image: 'https://images.unsplash.com/photo-1540553016722-983e48a2cd10?w=400&h=300&fit=crop',
         },
         {
           time: '15:00 - 16:30',
           title: 'Ecosistemas de Innovación: Modelo de Silicon Valley',
-          speaker: 'Dra. Patricia Chen',
-          country: 'Estados Unidos',
-          institution: 'Stanford Technology Ventures',
+          speaker: 'PhD. Ivan L. Medina Alvarado',
+          country: 'Colombia',
+          institution: 'Fundación Universitaria del Área Andina',
           description: 'Metodologías y estrategias del ecosistema de innovación más exitoso del mundo.',
+          image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&h=300&fit=crop',
         },
         {
           time: '18:00 - 19:30',
           title: 'Propiedad Intelectual y Patentes en Proyectos Científicos',
-          speaker: 'Dr. Miguel Ángel Torres',
-          country: 'Chile',
-          institution: 'Pontificia Universidad Católica de Chile',
+          speaker: 'Mg. Max C. Ramírez Soto',
+          country: 'Perú',
+          institution: 'PROCIENCIA',
           description: 'Protección de la propiedad intelectual y estrategias de patentamiento para proyectos de investigación.',
+          image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop',
         },
       ],
     },
@@ -41,26 +44,29 @@ export function ProgramSection() {
         {
           time: '10:00 - 11:30',
           title: 'De la Investigación al Mercado: Casos de Éxito en Latinoamérica',
-          speaker: 'Dr. Fernando Araújo',
-          country: 'Brasil',
-          institution: 'Universidade de São Paulo',
+          speaker: 'Mg. Juan C. Suarez Delgadillo',
+          country: 'Colombia',
+          institution: 'Universidad El Bosque',
           description: 'Experiencias exitosas de investigaciones brasileñas que han logrado impacto comercial.',
+          image: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=400&h=300&fit=crop',
         },
         {
           time: '15:00 - 16:30',
           title: 'Financiamiento e Inversión en Proyectos de Innovación',
-          speaker: 'Dra. María González',
-          country: 'México',
-          institution: 'Tecnológico de Monterrey',
+          speaker: 'Sergio Sandoval Opazo',
+          country: 'Chile',
+          institution: 'Universidad de La Frontera (UFRO)',
           description: 'Estrategias de financiamiento, capital de riesgo y fondos para proyectos de innovación.',
+          image: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=400&h=300&fit=crop',
         },
         {
           time: '18:00 - 19:30',
           title: 'Spin-offs Universitarias: Estrategias de Desarrollo',
-          speaker: 'Dr. Juan Pablo Ramírez',
-          country: 'Colombia',
-          institution: 'Universidad de los Andes',
+          speaker: 'Joannes Granja Ibarretxe',
+          country: 'España',
+          institution: 'IDOM CONSULTING',
           description: 'Creación y desarrollo de empresas spin-off a partir de investigación universitaria.',
+          image: 'https://images.unsplash.com/photo-1556155092-490a1ba16284?w=400&h=300&fit=crop',
         },
       ],
     },
@@ -71,26 +77,29 @@ export function ProgramSection() {
         {
           time: '10:00 - 11:30',
           title: 'Innovación Social y Desarrollo Sostenible',
-          speaker: 'Dra. Ana Lucía Mendoza',
-          country: 'Argentina',
-          institution: 'Universidad de Buenos Aires',
+          speaker: 'Ing. Patricia Anguita Mackay',
+          country: 'Chile',
+          institution: 'Universidad Santo Tomás de Chile',
           description: 'Proyectos de innovación con impacto social y contribución a los ODS.',
+          image: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=400&h=300&fit=crop',
         },
         {
           time: '15:00 - 16:30',
           title: 'Metodologías Ágiles para Proyectos de I+D+i',
-          speaker: 'Dr. Roberto Silva',
-          country: 'Portugal',
-          institution: 'Universidade de Lisboa',
+          speaker: 'Mg. Jorge O’Ryan Schütz',
+          country: 'Chile',
+          institution: 'Centro de Innovación UC, Anacleto Angelini',
           description: 'Aplicación de metodologías ágiles en proyectos de investigación, desarrollo e innovación.',
+          image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=300&fit=crop',
         },
         {
           time: '18:00 - 19:30',
           title: 'Panel de Cierre: El Futuro de la Innovación en Universidades Latinoamericanas',
-          speaker: 'Panel Multidisciplinario',
-          country: 'Internacional',
-          institution: 'Todos los ponentes',
+          speaker: 'Por definir',
+          country: 'Perú',
+          institution: 'Pontificia Universidad Católica del Perú',
           description: 'Reflexiones finales y perspectivas sobre el rol de las universidades en la innovación regional.',
+          image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=400&h=300&fit=crop',
         },
       ],
     },
@@ -149,45 +158,48 @@ export function ProgramSection() {
             </TabsList>
 
             {program.map((day, dayIndex) => (
-              <TabsContent key={dayIndex} value={`day${dayIndex + 1}`} className="space-y-6">
+              <TabsContent key={dayIndex} value={`day${dayIndex + 1}`} className="space-y-5">
                 {day.sessions.map((session, sessionIndex) => (
                   <div
                     key={sessionIndex}
-                    className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 md:p-8 border-2 border-gray-100 hover:border-[#FC2003]/30 hover:shadow-xl transition-all duration-300 group"
+                    className="bg-white rounded-xl overflow-hidden border border-gray-200 hover:border-[#5100D3]/30 hover:shadow-lg transition-all duration-300 group h-48"
                   >
-                    <div className="flex flex-col lg:flex-row lg:items-start gap-6">
-                      {/* Time Badge */}
-                      <div className="flex items-center justify-center lg:flex-col lg:items-center gap-2 bg-gradient-to-r from-[#FC2003] to-[#5100D3] text-white px-6 py-3 rounded-xl lg:min-w-[140px] shadow-md">
-                        <Clock className="w-5 h-5" />
-                        <div className="text-center">
-                          <div className="font-bold">{session.time}</div>
-                          <div className="text-xs opacity-90">Hora Perú</div>
-                        </div>
+                    <div className="flex h-full">
+                      {/* Left side - Image */}
+                      <div className="w-72 flex-shrink-0 relative overflow-hidden">
+                        <img
+                          src={session.image}
+                          alt={session.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
                       </div>
 
-                      {/* Content */}
-                      <div className="flex-1 space-y-3">
-                        <h3 className="text-xl font-bold text-gray-800 group-hover:text-[#FC2003] transition-colors">
+                      {/* Right side - Information */}
+                      <div className="flex-1 p-5 flex flex-col justify-center">
+                        {/* Time */}
+                        <div className="flex items-center gap-2 text-[#5100D3] font-semibold mb-2">
+                          <Clock className="w-4 h-4" />
+                          <span className="text-sm">{session.time}</span>
+                        </div>
+
+                        {/* Title */}
+                        <h3 className="text-lg font-bold text-gray-900 mb-3 group-hover:text-[#FC2003] transition-colors line-clamp-2">
                           {session.title}
                         </h3>
-                        <p className="text-gray-600 leading-relaxed">
-                          {session.description}
-                        </p>
-                        
-                        {/* Speaker Info */}
-                        <div className="flex flex-wrap items-center gap-4 pt-3 border-t">
-                          <div className="flex items-center gap-2">
-                            <User className="w-4 h-4 text-[#5100D3]" />
-                            <span className="font-semibold text-gray-700">{session.speaker}</span>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <span className="text-2xl">{getCountryFlag(session.country)}</span>
-                            <span className="text-sm text-gray-600">{session.country}</span>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <MapPin className="w-4 h-4 text-gray-400" />
-                            <span className="text-sm text-gray-500">{session.institution}</span>
-                          </div>
+
+                        {/* Speaker */}
+                        <div className="flex items-center gap-2 text-gray-800 font-semibold mb-1">
+                          <User className="w-4 h-4 text-gray-600" />
+                          <span className="text-sm">{session.speaker}</span>
+                        </div>
+
+                        {/* Institution */}
+                        <div className="flex items-center gap-2 text-gray-600">
+                          <Building2 className="w-4 h-4 text-gray-500" />
+                          <span className="text-sm flex items-center gap-1">
+                            {session.institution}, {getCountryFlag(session.country)} {session.country}
+                          </span>
                         </div>
                       </div>
                     </div>
