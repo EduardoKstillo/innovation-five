@@ -66,7 +66,7 @@ export function Header({ scrolled }: HeaderProps) {
           <div className="hidden md:block">
             <Button
               onClick={() => scrollToSection('#registro')}
-              className="bg-gradient-to-r from-[#FC2003] to-[#5100D3] hover:opacity-90"
+              className="bg-[#5100D3] hover:opacity-90"
             >
               Regístrate ahora
             </Button>

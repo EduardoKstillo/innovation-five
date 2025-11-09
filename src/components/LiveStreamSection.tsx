@@ -12,7 +12,7 @@ export function LiveStreamSection() {
       day: 1,
       date: '19 de Noviembre',
       fullDate: '2025-11-19',
-      videoId: 'xjdV-ukuwmw',
+      videoId: 'jQpWkfMbENM',
       startTime: '12:45',
     },
     {
@@ -110,7 +110,7 @@ export function LiveStreamSection() {
   return (
     <section id="streaming" className="py-20 bg-gradient-to-b from-gray-50 to-white">
       <div className="container mx-auto px-4">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-[1600px] mx-auto">
           {/* Header */}
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#FC2003]/10 to-[#5100D3]/10 px-4 py-2 rounded-full mb-4">
@@ -193,27 +193,28 @@ export function LiveStreamSection() {
           ) : (
             /* Desktop View - Video + Chat */
             <div className="bg-white rounded-2xl overflow-hidden shadow-2xl border-2 border-gray-100">
-              <div className="flex flex-col lg:flex-row">
-                {/* Video Container - 65% */}
-                <div className="lg:w-[65%] bg-black">
-                  <div className="relative" style={{ paddingBottom: '56.25%' }}>
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
+                {/* Video Container - 2/3 del espacio */}
+                <div className="lg:col-span-2 bg-black">
+                  <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
                     <iframe
-                      src={`https://www.youtube.com/embed/${selectedStream.videoId}?autoplay=0&controls=1&modestbranding=1&rel=0`}
+                      src={`https://www.youtube.com/embed/${selectedStream.videoId}`}
                       title={`Streaming Día ${selectedStream.day}`}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                       allowFullScreen
                       className="absolute top-0 left-0 w-full h-full"
                     ></iframe>
                   </div>
                 </div>
 
-                {/* Chat Container - 35% */}
-                <div className="lg:w-[35%] bg-gray-50 border-l-2 border-gray-200">
-                  <div className="relative h-full min-h-[500px] lg:min-h-[600px]">
+                {/* Chat Container - 1/3 del espacio */}
+                <div className="lg:col-span-1 bg-gray-50 border-l-2 border-gray-200">
+                  <div className="relative w-full h-full min-h-[400px] lg:min-h-[500px]">
                     <iframe
-                      src={`https://www.youtube.com/live_chat?v=${selectedStream.videoId}&embed_domain=ditt.unsa.edu.pe`}
+                      src={`https://www.youtube.com/live_chat?v=${selectedStream.videoId}&embed_domain=localhost`}
                       title="Chat en vivo"
                       className="absolute top-0 left-0 w-full h-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     ></iframe>
                   </div>
                 </div>
