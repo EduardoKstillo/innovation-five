@@ -1,4 +1,12 @@
 import { MapPin, Award } from 'lucide-react';
+import silviaImg from '../assets/speakers/silvia-mora-castro.jpg';
+import juanCImg from '../assets/speakers/juan-suarez.jpg';
+import jorgeOImg from '../assets/speakers/jorge-oryan.jpeg';
+import joannesGImg from '../assets/speakers/joannes-granja.png';
+import ivanMImg from '../assets/speakers/ivan-medina.jpg';
+import patiAImg from '../assets/speakers/patricia-anguita.jpg';
+import sergioSImg from '../assets/speakers/sergio-sandoval.jpg';
+import maxRImg from '../assets/speakers/max-ramirez.jpg';
 
 export function SpeakersSection() {
   const speakers = [
@@ -7,56 +15,56 @@ export function SpeakersSection() {
       country: 'México',
       institution: 'Tecnológico de Monterrey',
       topic: 'Innovación y Transferencia Tecnológica',
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop',
+      image: silviaImg,
     },
     {
       name: 'PhD. Ivan L. Medina Alvarado',
       country: 'Colombia',
       institution: 'Fundación Universitaria del Área Andina',
       topic: 'Ecosistemas de Innovación',
-      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop',
+      image: ivanMImg,
     },
     {
       name: 'Mg. Max C. Ramírez Soto',
       country: 'Perú',
       institution: 'PROCIENCIA',
       topic: 'Propiedad Intelectual y Patentes',
-      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop',
+      image: maxRImg,
     },
     {
       name: 'Mg. Juan C. Suarez Delgadillo',
       country: 'Colombia',
       institution: 'Universidad El Bosque',
       topic: 'De la Investigación al Mercado',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop',
+      image: juanCImg,
     },
     {
       name: 'Sergio Sandoval Opazo',
       country: 'Chile',
       institution: 'Universidad de La Frontera (UFRO)',
       topic: 'Financiamiento e Inversión',
-      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop',
+      image: sergioSImg,
     },
     {
       name: 'Joannes Granja Ibarretxe',
       country: 'España',
       institution: 'IDOM CONSULTING',
       topic: 'Spin-offs Universitarias',
-      image: 'https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=400&h=400&fit=crop',
+      image: joannesGImg,
     },
     {
       name: 'Ing. Patricia Anguita Mackay',
       country: 'Chile',
       institution: 'Universidad Santo Tomás de Chile',
       topic: 'Innovación Social y Desarrollo Sostenible',
-      image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400&h=400&fit=crop',
+      image: patiAImg,
     },
     {
       name: 'Mg. Jorge O’Ryan Schütz',
       country: 'Chile',
       institution: 'Centro de Innovación UC, Anacleto Angelini',
       topic: 'Metodologías Ágiles para I+D+i',
-      image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop',
+      image: jorgeOImg,
     },
     {
       name: 'Por definir',

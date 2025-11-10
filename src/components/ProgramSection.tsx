@@ -32,7 +32,7 @@ export function ProgramSection() {
           country: 'Perú',
           institution: 'PROCIENCIA',
           description: 'Protección de la propiedad intelectual y estrategias de patentamiento para proyectos de investigación.',
-          image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop',
+          image: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=400&h=300&fit=crop',
         },
       ],
     },

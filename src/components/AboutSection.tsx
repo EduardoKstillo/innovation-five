@@ -74,7 +74,7 @@ export function AboutSection() {
                 <div className="space-y-3 text-gray-700">
                   <p className="flex items-center gap-3 justify-center lg:justify-start">
                     <span className="w-1.5 h-1.5 bg-[#FC2003] rounded-full"></span>
-                    Acceso a experiencias de Silicon Valley, Europa y Latinoamérica
+                    Acceso a experiencias internacionales
                   </p>
                   <p className="flex items-center gap-3 justify-center lg:justify-start">
                     <span className="w-1.5 h-1.5 bg-[#5100D3] rounded-full"></span>
