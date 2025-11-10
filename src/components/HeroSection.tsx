@@ -151,13 +151,14 @@ export function HeroSection() {
 
             {/* CTA Button */}
             <div className="pt-3">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfiB24OOwpxF9Rp6t_35WZ1cqJRka7KFHVjB31_HhAT7lDfVQ/viewform" target="_blank" rel="noopener noreferrer">
               <Button
-                onClick={() => scrollToSection('#registro')}
                 size="lg"
                 className="bg-[#C1246B] hover:bg-[#A01E5A] text-white shadow-2xl px-8 md:px-10 h-11 md:h-12 font-bold text-sm md:text-base transition-all"
               >
                 Inscríbete Gratis
               </Button>
+            </a>
             </div>
           </div>
         </div>

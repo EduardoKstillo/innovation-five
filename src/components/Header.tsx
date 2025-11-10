@@ -65,16 +65,17 @@ export function Header({ scrolled, isInHero = false }: HeaderProps) {
 
           {/* CTA Button */}
           <div className="hidden md:block">
-            <Button
-              onClick={() => scrollToSection('#registro')}
-              className={
-                isInHero
-                  ? 'bg-[#C1246B] hover:bg-[#A01E5A] text-white font-bold transition-all'
-                  : 'bg-gradient-to-r from-[#FC2003] to-[#5100D3] hover:opacity-90 text-white font-bold'
-              }
-            >
-              Regístrate ahora
-            </Button>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfiB24OOwpxF9Rp6t_35WZ1cqJRka7KFHVjB31_HhAT7lDfVQ/viewform" target="_blank" rel="noopener noreferrer">
+              <Button
+                className={
+                  isInHero
+                    ? 'bg-[#C1246B] hover:bg-[#A01E5A] text-white font-bold transition-all'
+                    : 'bg-gradient-to-r from-[#FC2003] to-[#5100D3] hover:opacity-90 text-white font-bold'
+                }
+              >
+                Regístrate ahora
+              </Button>
+            </a>
           </div>
 
           {/* Mobile Menu Button */}

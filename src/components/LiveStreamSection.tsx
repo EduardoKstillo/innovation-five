@@ -211,7 +211,7 @@ export function LiveStreamSection() {
                 <div className="lg:col-span-1 bg-white/5 border-l border-white/10">
                   <div className="relative w-full h-full min-h-[400px] lg:min-h-[500px]">
                     <iframe
-                      src={`https://www.youtube.com/live_chat?v=${selectedStream.videoId}&embed_domain=localhost`}
+                      src={`https://www.youtube.com/live_chat?v=${selectedStream.videoId}&embed_domain=ditt.unsa.edu.pe`}
                       title="Chat en vivo"
                       className="absolute top-0 left-0 w-full h-full"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
