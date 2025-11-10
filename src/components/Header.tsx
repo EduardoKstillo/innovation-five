@@ -1,23 +1,22 @@
 import { Button } from './ui/button';
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
-import { ImageWithFallback } from './figma/ImageWithFallback';
+import DittLogo from './logos/DittLogo';
 
 interface HeaderProps {
   scrolled: boolean;
+  isInHero?: boolean;
 }
 
-export function Header({ scrolled }: HeaderProps) {
+export function Header({ scrolled, isInHero = false }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
     { label: 'Inicio', href: '#inicio' },
     { label: 'Sobre el evento', href: '#sobre' },
-    { label: 'Programa', href: '#programa' },
     { label: 'Ponentes', href: '#ponentes' },
-    { label: 'Transmisión', href: '#transmision' },
-    { label: 'Registro', href: '#registro' },
-    { label: 'Contacto', href: '#contacto' },
+    { label: 'Programa', href: '#programa' },
+    { label: 'Transmisión', href: '#streaming' },
   ];
 
   const scrollToSection = (href: string) => {
@@ -30,22 +29,20 @@ export function Header({ scrolled }: HeaderProps) {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-white shadow-lg' : 'bg-white/95 backdrop-blur-sm'
+      className={`${isInHero ? 'absolute top-0 left-0 right-0' : 'fixed top-0 left-0 right-0'} z-50 transition-all duration-300 ${
+        isInHero 
+          ? 'bg-transparent' 
+          : scrolled 
+            ? 'bg-white shadow-lg' 
+            : 'bg-white/95 backdrop-blur-sm'
       }`}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <div className="flex items-center gap-3">
-            <ImageWithFallback
-              src="https://images.unsplash.com/photo-1621008945448-513cef3a463d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx1bml2ZXJzaXR5JTIwbG9nbyUyMGhvcml6b250YWx8ZW58MXx8fHwxNzYyNDQ0ODc3fDA&ixlib=rb-4.1.0&q=80&w=1080"
-              alt="UNSA Logo"
-              className="h-10 w-auto object-contain"
-            />
-            <div className="hidden lg:block border-l pl-3 ml-3 border-gray-300">
-              <div className="text-sm font-semibold text-[#FC2003]">Semana de Innovación</div>
-              <div className="text-xs text-gray-600">UNSA 2025</div>
+          {/* Logo DITT */}
+          <div className="flex items-center">
+            <div style={isInHero ? { filter: 'brightness(0) invert(1)' } : {}}>
+              <DittLogo className="h-10 w-auto" />
             </div>
           </div>
 
@@ -55,7 +52,11 @@ export function Header({ scrolled }: HeaderProps) {
               <button
                 key={item.href}
                 onClick={() => scrollToSection(item.href)}
-                className="text-sm text-gray-700 hover:text-[#FC2003] transition-colors font-medium"
+                className={`text-sm transition-colors font-semibold ${
+                  isInHero 
+                    ? 'text-white hover:text-[#C1246B] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]' 
+                    : 'text-gray-700 hover:text-[#FC2003]'
+                }`}
               >
                 {item.label}
               </button>
@@ -66,7 +67,11 @@ export function Header({ scrolled }: HeaderProps) {
           <div className="hidden md:block">
             <Button
               onClick={() => scrollToSection('#registro')}
-              className="bg-[#5100D3] hover:opacity-90"
+              className={
+                isInHero
+                  ? 'bg-[#C1246B] hover:bg-[#A01E5A] text-white font-bold transition-all'
+                  : 'bg-gradient-to-r from-[#FC2003] to-[#5100D3] hover:opacity-90 text-white font-bold'
+              }
             >
               Regístrate ahora
             </Button>
@@ -75,7 +80,7 @@ export function Header({ scrolled }: HeaderProps) {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2"
+            className={`lg:hidden p-2 ${isInHero ? 'text-white' : 'text-gray-700'}`}
           >
             {mobileMenuOpen ? <X /> : <Menu />}
           </button>
@@ -83,20 +88,28 @@ export function Header({ scrolled }: HeaderProps) {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="lg:hidden py-4 border-t">
+          <div className={`lg:hidden py-4 border-t ${
+            isInHero 
+              ? 'bg-[#8B0156]/95 backdrop-blur-md border-white/20' 
+              : 'bg-white border-gray-200'
+          }`}>
             <nav className="flex flex-col gap-3">
               {navItems.map((item) => (
                 <button
                   key={item.href}
                   onClick={() => scrollToSection(item.href)}
-                  className="text-left py-2 text-gray-700 hover:text-[#FC2003] transition-colors"
+                  className={`text-left py-2 transition-colors font-semibold ${
+                    isInHero 
+                      ? 'text-white hover:text-[#C1246B]' 
+                      : 'text-gray-700 hover:text-[#FC2003]'
+                  }`}
                 >
                   {item.label}
                 </button>
               ))}
               <Button
                 onClick={() => scrollToSection('#registro')}
-                className="bg-gradient-to-r from-[#FC2003] to-[#5100D3] w-full mt-2"
+                className="bg-[#C1246B] hover:bg-[#A01E5A] text-white w-full mt-2 font-bold transition-all"
               >
                 Regístrate ahora
               </Button>

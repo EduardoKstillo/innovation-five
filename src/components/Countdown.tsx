@@ -15,7 +15,7 @@ export function Countdown({ targetDate }: CountdownProps) {
   useEffect(() => {
     const calculateTimeLeft = () => {
       const difference = +new Date(targetDate) - +new Date();
-
+      
       if (difference > 0) {
         setTimeLeft({
           days: Math.floor(difference / (1000 * 60 * 60 * 24)),
@@ -32,26 +32,33 @@ export function Countdown({ targetDate }: CountdownProps) {
     return () => clearInterval(timer);
   }, [targetDate]);
 
-  const TimeUnit = ({ value, label }: { value: number; label: string }) => (
-    <div className="flex flex-col items-center bg-white/15 backdrop-blur-md border-2 border-white/30 rounded-2xl p-4 min-w-[80px] shadow-lg">
-      <div className="text-4xl md:text-5xl text-white mb-1 font-bold">
-        {value.toString().padStart(2, '0')}
-      </div>
-      <div className="text-white/80 text-xs uppercase tracking-wider font-medium">
-        {label}
-      </div>
-    </div>
-  );
+  const timeUnits = [
+    { value: timeLeft.days, label: 'DÍAS' },
+    { value: timeLeft.hours, label: 'HORAS' },
+    { value: timeLeft.minutes, label: 'MINS' },
+    { value: timeLeft.seconds, label: 'SEGS', hideOnMobile: true },
+  ];
 
   return (
-    <div className="flex items-center justify-center gap-3">
-      <TimeUnit value={timeLeft.days} label="Días" />
-      <div className="text-white text-3xl font-light mb-6">:</div>
-      <TimeUnit value={timeLeft.hours} label="Horas" />
-      <div className="text-white text-3xl font-light mb-6">:</div>
-      <TimeUnit value={timeLeft.minutes} label="Mins" />
-      <div className="text-white text-3xl font-light mb-6">:</div>
-      <TimeUnit value={timeLeft.seconds} label="Segs" />
+    <div className="flex items-center justify-center gap-3 md:gap-4">
+      {timeUnits.map((unit, index) => (
+        <div key={unit.label} className="flex items-center gap-3 md:gap-4">
+          <div className={`bg-white/20 backdrop-blur-md border-2 border-white/30 rounded-xl p-3 md:p-4 min-w-[70px] md:min-w-[90px] shadow-lg ${unit.hideOnMobile ? 'hidden md:block' : ''}`}>
+            <div className="text-3xl md:text-4xl font-bold text-white drop-shadow-lg">
+              {String(unit.value).padStart(2, '0')}
+            </div>
+            <div className="text-xs text-white/90 font-medium mt-1">
+              {unit.label}
+            </div>
+          </div>
+          {index < timeUnits.length - 1 && !unit.hideOnMobile && (
+            <span className={`text-2xl md:text-3xl text-white font-bold ${index === timeUnits.length - 2 ? 'hidden md:inline' : ''}`}>:</span>
+          )}
+          {index < timeUnits.length - 1 && unit.hideOnMobile && (
+            <span className="text-2xl md:text-3xl text-white font-bold hidden md:inline">:</span>
+          )}
+        </div>
+      ))}
     </div>
   );
 }

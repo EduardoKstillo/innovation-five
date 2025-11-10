@@ -1,6 +1,5 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
-import { Clock, Download, User, Building2 } from 'lucide-react';
-import { Button } from './ui/button';
+import { Clock, User, Building2 } from 'lucide-react';
 
 export function ProgramSection() {
   const program = [
@@ -15,7 +14,7 @@ export function ProgramSection() {
           country: 'México',
           institution: 'Tecnológico de Monterrey',
           description: 'Casos de éxito en transferencia tecnológica desde universidades europeas al mercado global.',
-          image: 'https://images.unsplash.com/photo-1540553016722-983e48a2cd10?w=400&h=300&fit=crop',
+          image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&h=300&fit=crop',
         },
         {
           time: '15:00 - 16:30',
@@ -86,7 +85,7 @@ export function ProgramSection() {
         {
           time: '15:00 - 16:30',
           title: 'Metodologías Ágiles para Proyectos de I+D+i',
-          speaker: 'Mg. Jorge O’Ryan Schütz',
+          speaker: 'Mg. Jorge O\'Ryan Schütz',
           country: 'Chile',
           institution: 'Centro de Innovación UC, Anacleto Angelini',
           description: 'Aplicación de metodologías ágiles en proyectos de investigación, desarrollo e innovación.',
@@ -116,6 +115,7 @@ export function ProgramSection() {
       Argentina: '🇦🇷',
       Portugal: '🇵🇹',
       Internacional: '🌎',
+      Perú: '🇵🇪',
     };
     return flags[country] || '🌍';
   };
@@ -149,7 +149,7 @@ export function ProgramSection() {
                 <TabsTrigger
                   key={index}
                   value={`day${index + 1}`}
-                  className="flex flex-col py-4 data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#FC2003] data-[state=active]:to-[#5100D3] data-[state=active]:text-white rounded-lg transition-all"
+                  className="flex flex-col py-4 data-[state=active]:bg-gradient-to-br data-[state=active]:from-[#C1246B] data-[state=active]:to-[#8B1353] data-[state=active]:text-white rounded-lg transition-all"
                 >
                   <span className="font-bold">{day.day}</span>
                   <span className="text-xs opacity-80">{day.date}</span>
@@ -162,15 +162,15 @@ export function ProgramSection() {
                 {day.sessions.map((session, sessionIndex) => (
                   <div
                     key={sessionIndex}
-                    className="bg-white rounded-xl overflow-hidden border border-gray-200 hover:border-[#5100D3]/30 hover:shadow-lg transition-all duration-300 group h-48"
+                    className="bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-md hover:shadow-2xl hover:border-[#C1246B]/30 hover:-translate-y-1 transition-all duration-300 group h-auto md:h-48"
                   >
-                    <div className="flex h-full">
-                      {/* Left side - Image */}
-                      <div className="w-72 flex-shrink-0 relative overflow-hidden">
+                    <div className="flex flex-col md:flex-row h-full">
+                      {/* Left side - Image (oculta en móvil) */}
+                      <div className="hidden md:block md:w-72 flex-shrink-0 relative overflow-hidden">
                         <img
                           src={session.image}
                           alt={session.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
                       </div>
@@ -178,13 +178,13 @@ export function ProgramSection() {
                       {/* Right side - Information */}
                       <div className="flex-1 p-5 flex flex-col justify-center">
                         {/* Time */}
-                        <div className="flex items-center gap-2 text-[#5100D3] font-semibold mb-2">
+                        <div className="flex items-center gap-2 text-[#C1246B] font-semibold mb-2">
                           <Clock className="w-4 h-4" />
                           <span className="text-sm">{session.time}</span>
                         </div>
 
                         {/* Title */}
-                        <h3 className="text-lg font-bold text-gray-900 mb-3 group-hover:text-[#FC2003] transition-colors line-clamp-2">
+                        <h3 className="text-base md:text-lg font-bold text-gray-800 mb-3 group-hover:text-[#C1246B] transition-colors duration-300 line-clamp-2">
                           {session.title}
                         </h3>
 
@@ -198,7 +198,7 @@ export function ProgramSection() {
                         <div className="flex items-center gap-2 text-gray-600">
                           <Building2 className="w-4 h-4 text-gray-500" />
                           <span className="text-sm flex items-center gap-1">
-                            {session.institution}, {getCountryFlag(session.country)} {session.country}
+                            {session.institution} • {session.country}
                           </span>
                         </div>
                       </div>
@@ -208,18 +208,6 @@ export function ProgramSection() {
               </TabsContent>
             ))}
           </Tabs>
-
-          {/* Download Button */}
-          <div className="text-center mt-12">
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-2 border-[#5100D3] text-[#5100D3] hover:bg-[#5100D3] hover:text-white transition-all"
-            >
-              <Download className="w-5 h-5 mr-2" />
-              Descargar programa completo (PDF)
-            </Button>
-          </div>
         </div>
       </div>
     </section>

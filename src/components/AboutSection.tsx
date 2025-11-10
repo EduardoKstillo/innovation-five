@@ -1,21 +1,11 @@
-import { CheckCircle2 } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 
 export function AboutSection() {
-  const features = [
-    'Intercambio de conocimiento internacional',
-    'Alianzas estratégicas',
-    'Metodologías aplicadas',
-    'Networking profesional',
-    'Casos de éxito reales',
-    'Certificación oficial',
-  ];
-
   return (
     <section id="sobre" className="py-20 bg-white">
       <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left - Images */}
             <div className="relative">
               <div className="grid grid-cols-2 gap-4">
@@ -62,49 +52,39 @@ export function AboutSection() {
             </div>
 
             {/* Right - Content */}
-            <div className="space-y-6">
+            <div className="space-y-6 text-center lg:text-left">
               <div>
-                <div className="inline-block bg-gradient-to-r from-[#FC2003]/10 to-[#5100D3]/10 px-4 py-2 rounded-full mb-4">
-                  <span className="text-sm bg-clip-text text-transparent bg-gradient-to-r from-[#FC2003] to-[#5100D3]">
-                    Sobre el Evento
+                <div className="inline-block bg-gradient-to-r from-[#FC2003]/10 to-[#5100D3]/10 px-4 py-2 rounded-full mb-6">
+                  <span className="text-sm font-semibold bg-clip-text text-transparent bg-gradient-to-r from-[#FC2003] to-[#5100D3]">
+                    ¿Por qué asistir?
                   </span>
                 </div>
-                <h2 className="mb-4">
-                  Bienvenido a la Mejor
-                  <br />
-                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#FC2003] to-[#5100D3]">
-                    Conferencia Digital
+
+                <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+                  Conecta con el ecosistema
+                  <span className="block bg-clip-text text-transparent bg-gradient-to-r from-[#FC2003] to-[#5100D3]">
+                    de innovación global
                   </span>
                 </h2>
-                <p className="text-gray-600 leading-relaxed">
-                  La <strong>Semana de Innovación UNSA 2025</strong> fortalece
-                  el posicionamiento de la Universidad Nacional de San Agustín
-                  como referente regional en innovación y transferencia
-                  tecnológica, mediante experiencias internacionales aplicadas
-                  que permiten escalar proyectos científicos al mercado.
-                </p>
-              </div>
 
-              {/* Features */}
-              <div className="grid grid-cols-2 gap-3">
-                {features.map((feature, index) => (
-                  <div key={index} className="flex items-center gap-2">
-                    <CheckCircle2 className="w-5 h-5 text-[#FC2003] flex-shrink-0" />
-                    <span className="text-sm text-gray-700">{feature}</span>
-                  </div>
-                ))}
-              </div>
+                <p className="text-gray-600 text-lg leading-relaxed mb-8">
+                  La UNSA fortalece su posicionamiento como referente regional en transferencia tecnológica, creando un espacio de intercambio donde investigadores y emprendedores aprenden a comercializar sus desarrollos científicos.
+                </p>
 
-              {/* Quote */}
-              <div className="bg-gray-50 rounded-2xl p-6 border-l-4 border-[#FC2003]">
-                <p className="text-gray-700 italic mb-2">
-                  "Compartir estrategias internacionales de innovación aplicada
-                  que faciliten la transferencia de conocimiento científico al
-                  sector productivo"
-                </p>
-                <p className="text-sm text-gray-500">
-                  — Objetivo de la Semana de Innovación
-                </p>
+                <div className="space-y-3 text-gray-700">
+                  <p className="flex items-center gap-3 justify-center lg:justify-start">
+                    <span className="w-1.5 h-1.5 bg-[#FC2003] rounded-full"></span>
+                    Acceso a experiencias de Silicon Valley, Europa y Latinoamérica
+                  </p>
+                  <p className="flex items-center gap-3 justify-center lg:justify-start">
+                    <span className="w-1.5 h-1.5 bg-[#5100D3] rounded-full"></span>
+                    Estrategias de financiamiento y propiedad intelectual
+                  </p>
+                  <p className="flex items-center gap-3 justify-center lg:justify-start">
+                    <span className="w-1.5 h-1.5 bg-[#FC2003] rounded-full"></span>
+                    Networking con expertos y comunidad científica regional
+                  </p>
+                </div>
               </div>
             </div>
           </div>

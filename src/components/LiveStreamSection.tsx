@@ -12,7 +12,7 @@ export function LiveStreamSection() {
       day: 1,
       date: '19 de Noviembre',
       fullDate: '2025-11-19',
-      videoId: 'jQpWkfMbENM',
+      videoId: 'xjdV-ukuwmw',
       startTime: '12:45',
     },
     {
@@ -108,62 +108,62 @@ export function LiveStreamSection() {
   };
 
   return (
-    <section id="streaming" className="py-20 bg-gradient-to-b from-gray-50 to-white">
-      <div className="container mx-auto px-4">
+    <section id="streaming" className="py-20 bg-gradient-to-br from-[#FC2003] via-[#8B0156] to-[#5100D3] relative overflow-hidden">
+      {/* Capa de oscurecimiento */}
+      <div className="absolute inset-0 bg-black/30"></div>
+      
+      {/* Decorative Elements */}
+      <div className="absolute top-20 right-10 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-20 left-10 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+
+      <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-[1600px] mx-auto">
           {/* Header */}
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#FC2003]/10 to-[#5100D3]/10 px-4 py-2 rounded-full mb-4">
-              <span className="text-sm font-semibold bg-clip-text text-transparent bg-gradient-to-r from-[#FC2003] to-[#5100D3]">
+            <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-4">
+              <span className="text-sm font-semibold text-white">
                 Transmisión en Vivo
               </span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
               Sigue el evento
-              <span className="block bg-clip-text text-transparent bg-gradient-to-r from-[#FC2003] to-[#5100D3]">
-                en tiempo real
-              </span>
+              <span className="block">en tiempo real</span>
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+            <p className="text-white/90 max-w-2xl mx-auto text-lg">
               Transmisión en vivo vía YouTube con chat interactivo
             </p>
           </div>
 
-          {/* Day Selector */}
-          <div className="flex justify-center gap-3 mb-8 flex-wrap">
+          {/* Day Selector - Estilo Tabs */}
+          <div className="grid w-full max-w-md mx-auto grid-cols-3 mb-8 h-auto bg-white/10 backdrop-blur-sm p-1 rounded-xl gap-1">
             {streams.map((stream) => (
               <button
                 key={stream.day}
                 onClick={() => setSelectedDay(stream.day)}
-                className={`px-6 py-3 rounded-xl font-semibold transition-all ${
+                className={`flex flex-col py-4 rounded-lg transition-all ${
                   selectedDay === stream.day
-                    ? 'bg-gradient-to-r from-[#FC2003] to-[#5100D3] text-white shadow-lg scale-105'
-                    : 'bg-white text-gray-700 border-2 border-gray-200 hover:border-[#5100D3]/30'
+                    ? 'bg-gradient-to-br from-[#C1246B] to-[#8B1353] text-white'
+                    : 'bg-transparent text-white/80 hover:bg-white/10'
                 }`}
               >
-                <div className="flex items-center gap-2">
-                  <Calendar className="w-4 h-4" />
-                  <div className="text-left">
-                    <div className="text-sm font-bold">Día {stream.day}</div>
-                    <div className="text-xs opacity-90">{stream.date}</div>
-                  </div>
-                  {currentDay === stream.day && (
-                    <span className="ml-2 w-2 h-2 bg-white rounded-full animate-pulse"></span>
-                  )}
-                </div>
+                <span className="font-bold">Día {stream.day}</span>
+                <span className="text-xs opacity-80">{stream.date}</span>
+                {currentDay === stream.day && selectedDay === stream.day && (
+                  <span className="mt-1 mx-auto w-1.5 h-1.5 bg-white rounded-full animate-pulse"></span>
+                )}
               </button>
             ))}
           </div>
 
           {/* Stream Info */}
-          <div className="bg-white rounded-xl p-4 mb-6 border-2 border-gray-100 max-w-3xl mx-auto">
+          <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 mb-6 border border-white/20 max-w-3xl mx-auto">
             <div className="flex items-center justify-center gap-6 flex-wrap">
-              <div className="flex items-center gap-2 text-gray-700">
-                <Calendar className="w-5 h-5 text-[#5100D3]" />
+              <div className="flex items-center gap-2 text-white">
+                <Calendar className="w-5 h-5" />
                 <span className="font-semibold">{selectedStream.date}</span>
               </div>
-              <div className="flex items-center gap-2 text-gray-700">
-                <Clock className="w-5 h-5 text-[#FC2003]" />
+              <div className="flex items-center gap-2 text-white">
+                <Clock className="w-5 h-5" />
                 <span className="font-semibold">{selectedStream.startTime} Hora Perú</span>
               </div>
             </div>
@@ -171,20 +171,20 @@ export function LiveStreamSection() {
 
           {/* Mobile View - YouTube Button */}
           {isMobile ? (
-            <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 text-center">
+            <div className="bg-black/40 backdrop-blur-md rounded-2xl p-8 text-center border border-white/20">
               <div className="mb-6">
-                <Youtube className="w-20 h-20 text-red-600 mx-auto mb-4" />
+                <Youtube className="w-20 h-20 text-white mx-auto mb-4" />
                 <h3 className="text-2xl font-bold text-white mb-2">
                   Ver en YouTube
                 </h3>
-                <p className="text-gray-300">
+                <p className="text-white/80">
                   Para una mejor experiencia en dispositivos móviles, mira el streaming directamente en YouTube
                 </p>
               </div>
               <Button
                 onClick={handleWatchOnYouTube}
                 size="lg"
-                className="bg-red-600 hover:bg-red-700 text-white font-bold"
+                className="bg-[#C1246B] hover:bg-[#A01E5A] text-white font-bold"
               >
                 <Youtube className="w-5 h-5 mr-2" />
                 Abrir en YouTube
@@ -192,7 +192,7 @@ export function LiveStreamSection() {
             </div>
           ) : (
             /* Desktop View - Video + Chat */
-            <div className="bg-white rounded-2xl overflow-hidden shadow-2xl border-2 border-gray-100">
+            <div className="bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden shadow-2xl border border-white/20">
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
                 {/* Video Container - 2/3 del espacio */}
                 <div className="lg:col-span-2 bg-black">
@@ -208,7 +208,7 @@ export function LiveStreamSection() {
                 </div>
 
                 {/* Chat Container - 1/3 del espacio */}
-                <div className="lg:col-span-1 bg-gray-50 border-l-2 border-gray-200">
+                <div className="lg:col-span-1 bg-white/5 border-l border-white/10">
                   <div className="relative w-full h-full min-h-[400px] lg:min-h-[500px]">
                     <iframe
                       src={`https://www.youtube.com/live_chat?v=${selectedStream.videoId}&embed_domain=localhost`}
@@ -221,16 +221,16 @@ export function LiveStreamSection() {
               </div>
 
               {/* Footer with YouTube Link */}
-              <div className="bg-gradient-to-r from-gray-50 to-gray-100 px-6 py-4 flex items-center justify-between flex-wrap gap-4">
+              <div className="bg-black/30 backdrop-blur-sm px-6 py-4 flex items-center justify-between flex-wrap gap-4 border-t border-white/10">
                 <div className="flex items-center gap-3">
-                  <div className="bg-red-600 p-2 rounded-lg">
+                  <div className="bg-[#C1246B] p-2 rounded-lg">
                     <Youtube className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <p className="text-sm font-semibold text-gray-900">
+                    <p className="text-sm font-semibold text-white">
                       Semana de Innovación UNSA 2025
                     </p>
-                    <p className="text-xs text-gray-600">
+                    <p className="text-xs text-white/70">
                       Streaming en vivo vía YouTube
                     </p>
                   </div>
@@ -239,7 +239,7 @@ export function LiveStreamSection() {
                   onClick={handleWatchOnYouTube}
                   variant="outline"
                   size="sm"
-                  className="border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white"
+                  className="border-2 border-white/30 text-white hover:bg-white/10"
                 >
                   <Youtube className="w-4 h-4 mr-2" />
                   Ver en YouTube
@@ -250,11 +250,11 @@ export function LiveStreamSection() {
 
           {/* Additional Info */}
           <div className="mt-8 text-center">
-            <p className="text-gray-600 text-sm">
+            <p className="text-white/90 text-sm">
               ¿Problemas con la transmisión?{' '}
               <button
                 onClick={handleWatchOnYouTube}
-                className="text-[#5100D3] font-semibold hover:underline"
+                className="text-white font-semibold hover:underline"
               >
                 Ver directamente en YouTube
               </button>

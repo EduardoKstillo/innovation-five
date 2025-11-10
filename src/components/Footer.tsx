@@ -1,9 +1,10 @@
 import { Facebook, Youtube, Music } from 'lucide-react';
+import DittLogo from './logos/DittLogo';
 
 export function Footer() {
   const socialLinks = [
-    { icon: Facebook, label: 'Facebook', url: 'https://facebook.com' },
-    { icon: Youtube, label: 'YouTube', url: 'https://youtube.com' },
+    { icon: Facebook, label: 'Facebook', url: 'https://www.facebook.com/DITTUNSA' },
+    { icon: Youtube, label: 'YouTube', url: 'https://www.youtube.com/@DITTUNSA' },
     { icon: Music, label: 'TikTok', url: 'https://tiktok.com' },
   ];
 
@@ -11,17 +12,9 @@ export function Footer() {
     <footer className="bg-gray-900 text-white py-12">
       <div className="container mx-auto px-4">
         <div className="max-w-2xl mx-auto text-center space-y-8">
-          {/* Logo */}
+          {/* Logo DITT */}
           <div className="flex justify-center">
-            <div className="inline-flex items-center gap-3">
-              <div className="w-14 h-14 bg-gradient-to-br from-[#FC2003] to-[#5100D3] rounded-xl flex items-center justify-center shadow-lg">
-                <span className="text-white text-xl font-bold">UNSA</span>
-              </div>
-              <div className="text-left">
-                <div className="text-white font-bold text-lg">Semana de Innovación</div>
-                <div className="text-white/80 text-sm">UNSA 2025</div>
-              </div>
-            </div>
+            <DittLogo className="w-60 h-16 sm:w-68 sm:h-20" />
           </div>
 
           {/* Social Links */}

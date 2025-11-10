@@ -84,6 +84,9 @@ export function SpeakersSection() {
 
   return (
     <section id="ponentes" className="py-20 bg-gradient-to-br from-[#FC2003] via-[#8B0156] to-[#5100D3] relative overflow-hidden">
+      {/* Capa de oscurecimiento */}
+      <div className="absolute inset-0 bg-black/30"></div>
+      
       {/* Decorative Elements */}
       <div className="absolute top-20 right-10 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
       <div className="absolute bottom-20 left-10 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
