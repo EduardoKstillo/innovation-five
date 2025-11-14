@@ -3,6 +3,7 @@ import { Calendar, MapPin, Users, Globe, Radio } from 'lucide-react';
 import { Countdown } from './Countdown';
 import { Header } from './Header';
 import { useState, useEffect } from 'react';
+import SmInLogo from './logos/SmInLogo';
 
 export function HeroSection() {
   const [isLive, setIsLive] = useState(false);
@@ -93,13 +94,18 @@ export function HeroSection() {
             )}
 
             {/* Main Title */}
-            <div className="mb-3">
+            {/* <div className="mb-3">
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-2 drop-shadow-lg" style={{ fontFamily: 'Poppins, sans-serif', letterSpacing: '1px' }}>
                 Semana de Innovación
               </h1>
               <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold text-white drop-shadow-lg" style={{ fontFamily: 'Poppins, sans-serif', letterSpacing: '3px' }}>
                 UNSA 2025
               </h2>
+            </div> */}
+
+            {/* Main Title - Logo SVG */}
+            <div className="mb-3">
+              <SmInLogo className="w-full text-white max-w-4xl mx-auto h-auto" />
             </div>
 
             {/* Subtitle */}
@@ -124,7 +130,7 @@ export function HeroSection() {
               </div>
               <div className="flex items-center gap-2 bg-white/25 backdrop-blur-md px-3 md:px-4 py-2 rounded-full border border-white/40 shadow-lg">
                 <Globe className="w-4 h-4 text-white" />
-                <span className="text-xs md:text-sm font-medium text-white">8 Países</span>
+                <span className="text-xs md:text-sm font-medium text-white">5 Países</span>
               </div>
             </div>
 

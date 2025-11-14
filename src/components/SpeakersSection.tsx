@@ -14,63 +14,63 @@ export function SpeakersSection() {
       name: 'MSc. Silvia P. Mora - Castro',
       country: 'México',
       institution: 'Tecnológico de Monterrey',
-      topic: 'Innovación y Transferencia Tecnológica',
+      // topic: 'Innovación y Transferencia Tecnológica',
       image: silviaImg,
     },
     {
       name: 'PhD. Ivan L. Medina Alvarado',
       country: 'Colombia',
       institution: 'Fundación Universitaria del Área Andina',
-      topic: 'Ecosistemas de Innovación',
+      // topic: 'Ecosistemas de Innovación',
       image: ivanMImg,
     },
     {
       name: 'Mg. Max C. Ramírez Soto',
       country: 'Perú',
       institution: 'PROCIENCIA',
-      topic: 'Propiedad Intelectual y Patentes',
+      // topic: 'Propiedad Intelectual y Patentes',
       image: maxRImg,
     },
     {
       name: 'Mg. Juan C. Suarez Delgadillo',
       country: 'Colombia',
       institution: 'Universidad El Bosque',
-      topic: 'De la Investigación al Mercado',
+      // topic: 'De la Investigación al Mercado',
       image: juanCImg,
     },
     {
       name: 'Sergio Sandoval Opazo',
       country: 'Chile',
       institution: 'Universidad de La Frontera (UFRO)',
-      topic: 'Financiamiento e Inversión',
+      // topic: 'Financiamiento e Inversión',
       image: sergioSImg,
     },
     {
       name: 'Joannes Granja Ibarretxe',
       country: 'España',
       institution: 'IDOM CONSULTING',
-      topic: 'Spin-offs Universitarias',
+      // topic: 'Spin-offs Universitarias',
       image: joannesGImg,
     },
     {
       name: 'Ing. Patricia Anguita Mackay',
       country: 'Chile',
       institution: 'Universidad Santo Tomás de Chile',
-      topic: 'Innovación Social y Desarrollo Sostenible',
+      // topic: 'Innovación Social y Desarrollo Sostenible',
       image: patiAImg,
     },
     {
       name: 'Mg. Jorge O’Ryan Schütz',
       country: 'Chile',
       institution: 'Centro de Innovación UC, Anacleto Angelini',
-      topic: 'Metodologías Ágiles para I+D+i',
+      // topic: 'Metodologías Ágiles para I+D+i',
       image: jorgeOImg,
     },
     {
       name: 'Por definir',
       country: 'Perú',
-      institution: 'Pontificia Universidad Católica del Perú',
-      topic: 'El Futuro de la Innovación Universitaria',
+      institution: '',
+      // topic: 'El Futuro de la Innovación Universitaria',
       image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop',
     },
   ];
@@ -85,6 +85,7 @@ export function SpeakersSection() {
       Colombia: '🇨🇴',
       Argentina: '🇦🇷',
       Portugal: '🇵🇹',
+      Perú: '🇵🇪',
       'Múltiples Países': '🌎',
     };
     return flags[country] || '🌍';
@@ -165,7 +166,7 @@ export function SpeakersSection() {
           {/* Bottom Note */}
           <div className="text-center mt-16">
             <p className="text-white/90 text-sm">
-              Cada ponente compartirá su experiencia y conocimiento en una sesión de 90 minutos con espacio para preguntas
+              Cada ponente compartirá su experiencia y conocimiento en una sesión de 30 minutos con espacio para preguntas
             </p>
           </div>
         </div>

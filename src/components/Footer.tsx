@@ -11,10 +11,10 @@ export function Footer() {
   return (
     <footer className="bg-gray-900 text-white py-12">
       <div className="container mx-auto px-4">
-        <div className="max-w-2xl mx-auto text-center space-y-8">
+        <div className="max-w-2xl mx-auto text-center space-y-5">
           {/* Logo DITT */}
           <div className="flex justify-center">
-            <DittLogo className="w-60 h-16 sm:w-68 sm:h-20" />
+            <DittLogo className="w-60 h-16 sm:w-68 sm:h-10" />
           </div>
 
           {/* Social Links */}
@@ -36,7 +36,7 @@ export function Footer() {
           {/* Copyright */}
           <div className="border-t border-gray-800 pt-8">
             <p className="text-gray-400 text-sm">
-              © 2025 Universidad Nacional de San Agustín de Arequipa
+              © 2025 Eduardo Castillo
             </p>
             <p className="text-gray-500 text-xs mt-2">
               Dirección de Innovación y Transferencia Tecnológica
