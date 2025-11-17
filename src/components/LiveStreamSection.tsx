@@ -19,7 +19,7 @@ export function LiveStreamSection() {
       day: 2,
       date: '20 de Noviembre',
       fullDate: '2025-11-20',
-      videoId: 'DIA_2_VIDEO_ID', // TODO: Reemplazar con el ID real del Día 2
+      videoId: '6VClqVwpt_4',
       startTime: '12:45',
     },
     {
