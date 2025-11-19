@@ -115,7 +115,7 @@ export function SpeakersSection() {
               <span className="block">Mundial</span>
             </h2>
             <p className="text-white/90 text-lg max-w-2xl mx-auto">
-              9 expertos internacionales de 8 países compartirán sus experiencias en innovación y transferencia tecnológica
+              9 expertos internacionales de 5 países compartirán sus experiencias en innovación y transferencia tecnológica
             </p>
           </div>
 
