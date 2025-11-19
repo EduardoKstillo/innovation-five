@@ -26,7 +26,7 @@ export function HeroSection() {
       const currentMinute = peruTime.getMinutes();
 
       // Fechas del evento
-      const eventDates = ['2025-11-09', '2025-11-20', '2025-11-21'];
+      const eventDates = ['2025-11-19', '2025-11-20', '2025-11-21'];
       
       // Verificar si es uno de los días del evento y está dentro del horario (10:00 - 20:00)
       if (eventDates.includes(currentDate)) {
