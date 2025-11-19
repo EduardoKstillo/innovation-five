@@ -7,6 +7,7 @@ import ivanMImg from '../assets/speakers/ivan-medina.jpg';
 import patiAImg from '../assets/speakers/patricia-anguita.jpg';
 import sergioSImg from '../assets/speakers/sergio-sandoval.jpg';
 import maxRImg from '../assets/speakers/max-ramirez.jpg';
+import rocioCImg from '../assets/speakers/rocio-cabrera.jpg';
 
 export function SpeakersSection() {
   const speakers = [
@@ -67,11 +68,11 @@ export function SpeakersSection() {
       image: jorgeOImg,
     },
     {
-      name: 'Por definir',
+      name: 'Ing. Rocío Cabrera Gómez',
       country: 'Perú',
-      institution: '',
+      institution: 'CONCYTEC',
       // topic: 'El Futuro de la Innovación Universitaria',
-      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop',
+      image: rocioCImg,
     },
   ];
 

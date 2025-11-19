@@ -12,7 +12,7 @@ export default function App() {
         <HeroSection />
         <AboutSection />
         <SpeakersSection />
-        {/* <ProgramSection /> */}
+        <ProgramSection />
         <LiveStreamSection />
       </main>
       <Footer />
