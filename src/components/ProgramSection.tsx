@@ -1,11 +1,15 @@
+import { useState, useEffect } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
 import { Clock, User, Building2 } from 'lucide-react';
 
 export function ProgramSection() {
+  const [currentDay, setCurrentDay] = useState<number>(1);
+
   const program = [
     {
       day: 'Día 1',
       date: '19 de Noviembre',
+      fullDate: '2025-11-19',
       sessions: [
         {
           time: '13:05 - 13:30',
@@ -13,7 +17,6 @@ export function ProgramSection() {
           speaker: 'MSc. Silvia P. Mora - Castro',
           country: 'México',
           institution: 'Tecnológico de Monterrey',
-          // description: 'Casos de éxito en transferencia tecnológica desde universidades europeas al mercado global.',
           image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&h=300&fit=crop',
         },
         {
@@ -22,7 +25,6 @@ export function ProgramSection() {
           speaker: 'PhD. Ivan L. Medina Alvarado',
           country: 'Colombia',
           institution: 'Fundación Universitaria del Área Andina',
-          // description: 'Metodologías y estrategias del ecosistema de innovación más exitoso del mundo.',
           image: 'https://stakeholders.com.pe/wp-content/uploads/2024/10/environmental-concept-green-globe-in-the-hands-of-2024-07-22-19-35-07-utc-scaled.webp',
         },
         {
@@ -31,7 +33,6 @@ export function ProgramSection() {
           speaker: 'Mg. Max C. Ramírez Soto',
           country: 'Perú',
           institution: 'PROCIENCIA',
-          // description: 'Protección de la propiedad intelectual y estrategias de patentamiento para proyectos de investigación.',
           image: 'https://b3278403.smushcdn.com/3278403/wp-content/uploads/2025/09/output1-3-530-scaled.jpg?lossy=2&strip=1&webp=1',
         },
       ],
@@ -39,6 +40,7 @@ export function ProgramSection() {
     {
       day: 'Día 2',
       date: '20 de Noviembre',
+      fullDate: '2025-11-20',
       sessions: [
         {
           time: '13:05 - 13:30',
@@ -46,7 +48,6 @@ export function ProgramSection() {
           speaker: 'Mg. Jorge O\'Ryan Schütz',
           country: 'Chile',
           institution: 'Centro de Innovación UC, Anacleto Angelini',
-          // description: 'Aplicación de metodologías ágiles en proyectos de investigación, desarrollo e innovación.',
           image: 'https://recla.org/wp-content/uploads/2024/03/Creando-puentes-educativos-metodologias-para-vinculacion-universidad-empresa-3.webp',
         },
         {
@@ -55,7 +56,6 @@ export function ProgramSection() {
           speaker: 'Mg. Sergio Sandoval Opazo',
           country: 'Chile',
           institution: 'Universidad de La Frontera (UFRO)',
-          // description: 'Estrategias de financiamiento, capital de riesgo y fondos para proyectos de innovación.',
           image: 'https://www.galileo.edu/revista-galileo/files/2019/11/lamp_color-01-compressor.jpg',
         },
         {
@@ -64,7 +64,6 @@ export function ProgramSection() {
           speaker: 'Joannes Granja Ibarretxe',
           country: 'España',
           institution: 'IDOM CONSULTING',
-          // description: 'Creación y desarrollo de empresas spin-off a partir de investigación universitaria.',
           image: 'https://images.unsplash.com/photo-1556155092-490a1ba16284?w=400&h=300&fit=crop',
         },
       ],
@@ -72,6 +71,7 @@ export function ProgramSection() {
     {
       day: 'Día 3',
       date: '21 de Noviembre',
+      fullDate: '2025-11-21',
       sessions: [
         {
           time: '13:05 - 13:30',
@@ -79,7 +79,6 @@ export function ProgramSection() {
           speaker: 'Ing. Patricia Anguita Mackay',
           country: 'Chile',
           institution: 'Universidad Santo Tomás',
-          // description: 'Proyectos de innovación con impacto social y contribución a los ODS.',
           image: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=400&h=300&fit=crop',
         },
         {
@@ -88,7 +87,6 @@ export function ProgramSection() {
           speaker: 'Mg. Juan C. Suarez Delgadillo',
           country: 'Colombia',
           institution: 'Universidad El Bosque',
-          // description: 'Experiencias exitosas de investigaciones brasileñas que han logrado impacto comercial.',
           image: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=400&h=300&fit=crop',
         },
         {
@@ -97,12 +95,58 @@ export function ProgramSection() {
           speaker: 'Ing. Rocío Cabrera Gómez',
           country: 'Perú',
           institution: 'CONCYTEC',
-          // description: 'Reflexiones finales y perspectivas sobre el rol de las universidades en la innovación regional.',
           image: 'https://www.ciu.com.uy/wp-content/uploads/2024/05/1dff8f61-a32c-46d8-be4d-a83d848b1dd6.jpg',
         },
       ],
     },
   ];
+
+  // Detección automática del día actual basado en la fecha/hora de Perú (GMT-5)
+  useEffect(() => {
+    const detectCurrentDay = () => {
+      // Obtener fecha/hora actual en Perú (GMT-5)
+      const now = new Date();
+      const peruTime = new Date(now.toLocaleString('en-US', { timeZone: 'America/Lima' }));
+      
+      const currentDate = peruTime.toISOString().split('T')[0];
+
+      // Determinar qué día mostrar
+      for (let i = 0; i < program.length; i++) {
+        const day = program[i];
+        
+        // Si es el día del evento
+        if (currentDate === day.fullDate) {
+          setCurrentDay(i + 1);
+          return;
+        }
+        
+        // Si es después del día del evento pero antes del siguiente
+        if (currentDate > day.fullDate) {
+          // Si hay un siguiente día y aún no ha llegado
+          if (i < program.length - 1 && currentDate < program[i + 1].fullDate) {
+            setCurrentDay(i + 1);
+            return;
+          }
+          // Si es el último día y ya pasó
+          if (i === program.length - 1) {
+            setCurrentDay(i + 1);
+            return;
+          }
+        }
+      }
+
+      // Si aún no empieza el evento, mostrar día 1
+      if (currentDate < program[0].fullDate) {
+        setCurrentDay(1);
+      }
+    };
+
+    detectCurrentDay();
+    // Actualizar cada minuto
+    const interval = setInterval(detectCurrentDay, 60000);
+    
+    return () => clearInterval(interval);
+  }, []);
 
   const getCountryFlag = (country: string) => {
     const flags: { [key: string]: string } = {
@@ -143,7 +187,7 @@ export function ProgramSection() {
           </div>
 
           {/* Tabs */}
-          <Tabs defaultValue="day1" className="w-full">
+          <Tabs value={`day${currentDay}`} onValueChange={(value) => setCurrentDay(parseInt(value.replace('day', '')))} className="w-full">
             <TabsList className="grid w-full max-w-md mx-auto grid-cols-3 mb-12 h-auto bg-gray-100 p-1 rounded-xl">
               {program.map((day, index) => (
                 <TabsTrigger

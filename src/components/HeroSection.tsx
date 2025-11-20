@@ -138,12 +138,16 @@ export function HeroSection() {
             {!isLive ? (
               <div className="pt-3">
                 <p className="text-white text-xs md:text-sm font-semibold mb-3 uppercase tracking-widest drop-shadow-md">
-                  El evento comienza en
+                  {/* El evento comienza en */}
+                  La cuenta regresiva ha terminado. ¡Estamos a punto de comenzar!
                 </p>
                 <Countdown targetDate="2025-11-19T12:45:00" />
               </div>
             ) : (
               <div className="pt-3">
+                <p className="text-white text-xs md:text-sm font-semibold mb-3 uppercase tracking-widest drop-shadow-md">
+                  El evento ya está en vivo. ¡No te pierdas ni un minuto de la transmisión!
+                </p>
                 <Button
                   onClick={() => scrollToSection('#streaming')}
                   size="lg"
