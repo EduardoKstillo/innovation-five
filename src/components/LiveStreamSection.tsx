@@ -19,14 +19,14 @@ export function LiveStreamSection() {
       day: 2,
       date: '20 de Noviembre',
       fullDate: '2025-11-20',
-      videoId: 'Yn23-3zp7Zc',
+      videoId: '356owi2KZr8',
       startTime: '12:45',
     },
     {
       day: 3,
       date: '21 de Noviembre',
       fullDate: '2025-11-21',
-      videoId: '356owi2KZr8', // TODO: Reemplazar con el ID real del Día 3
+      videoId: 'Yn23-3zp7Zc', // TODO: Reemplazar con el ID real del Día 3
       startTime: '12:45',
     },
   ];
